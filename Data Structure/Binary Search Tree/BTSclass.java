@@ -58,5 +58,51 @@ public class BTSclass
             }
     }
 
+    public void delete()
+    {
+
+    }
+
+    // Print inorder traversal
+    public void PrintInorder(Node node)
+    {
+        if(node == null)
+        {
+            return ;
+        }
+        PrintInorder(node.left);
+        System.out.print(node.element + " ");
+        PrintInorder(node.right);
+    }
+
+    // Print preorder traversal
+    public void PrintPreorder(Node node)
+    {
+        if(node == null)
+        {
+            return ;
+        }
+        System.out.print(node.element + " ");
+        PrintPreorder(node.left);
+        PrintPreorder(node.right);
+    }
+
+    // Print postorder traversal
+    public void PrintPostorder(Node node)
+    {
+        if(node == null)
+        {
+            return ;
+        }
+        PrintPostorder(node.left);
+        PrintPostorder(node.right);
+        System.out.print(node.element + " ");
+    }
+
+    // return root node
+    public Node root()
+    {
+        return root;
+    }
 
 }
