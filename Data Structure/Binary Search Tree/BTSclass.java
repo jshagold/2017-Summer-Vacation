@@ -6,6 +6,7 @@ public class BTSclass
 {
     private Node root;
 
+    // The skeleton of the Node method
     public class Node
     {
         int element;
@@ -19,8 +20,54 @@ public class BTSclass
         }
     }
 
+    // search method
+    public void Search(int input)
+    {
+        Search(input, root);
+    }
+
+    // Search method using recursive call
+    public void Search(int input, Node node)
+    {
+        if(node == null)
+        {
+            System.out.println("There is no node of the given input value");
+            return ;
+        }
+
+        String parent = null, left = null, right = null;
+        if(input == node.element)
+        {
+            if(node.parent != null)
+            {
+                parent = Integer.toString(node.parent.element);
+            }
+            if(node.left != null)
+            {
+                left = Integer.toString(node.left.element);
+            }
+            if(node.right != null)
+            {
+                right = Integer.toString(node.right.element);
+            }
+            System.out.println("element = " + node.element + "\nparent = " + parent + "\nleftchild = " + left + " rightchild = " + right);
+        }
+        else
+        {
+            if(input < node.element)
+            {
+                Search(input, node.left);
+            }
+            else if(input > node.element)
+            {
+                Search(input, node.right);
+            }
+        }
+    }
+
+
     // insert method
-    public void insert(int input)
+    public void Insert(int input)
     {
         Node node = new Node(input);
 
@@ -30,12 +77,13 @@ public class BTSclass
         }
         else
         {
-            insert(input, root);
+            Insert(input, root);
         }
     }
 
-    // Use recursive call to insert method
-    public void insert(int input, Node ParentNode)
+
+    // Insert method using recursive call
+    public void Insert(int input, Node ParentNode)
     {
         Node node = new Node(input);
             if(input < ParentNode.element && ParentNode.left == null)
@@ -45,7 +93,7 @@ public class BTSclass
             }
             else if(input < ParentNode.element && ParentNode.left != null)
             {
-                insert(input, ParentNode.left);
+                Insert(input, ParentNode.left);
             }
             else if(input > ParentNode.element && ParentNode.right == null)
             {
@@ -54,13 +102,56 @@ public class BTSclass
             }
             else if(input > ParentNode.element && ParentNode.right != null)
             {
-                insert(input, ParentNode.right);
+                Insert(input, ParentNode.right);
             }
     }
 
-    public void delete()
+    // delete method
+    public void Delete(int input)
     {
+        Delete(input, root);
+    }
+    // Delete method using recursive call
+    public void Delete(int input, Node node)
+    {
+        if(node == null)
+        {
+            System.out.println("can't find node with element " + input);
+            return ;
+        }
 
+        if(input != node.element)
+        {
+            if(input < node.element)
+            {
+                Delete(input, node.left);
+            }
+            else
+            {
+                Delete(input, node.right);
+            }
+        }
+        else
+        {
+            Node temp = node.right;
+            if(node == root)
+            {
+                while(temp.left != null)
+                {
+                    temp = temp.left;
+                }
+                temp.parent.left = null;
+                temp.parent = null;
+
+                temp.left = node.left;
+                node.left.parent = temp;
+
+                temp.right = node.right;
+                node.right.parent = temp;
+
+                root = temp;
+            }
+        }
     }
 
     // Print inorder traversal
