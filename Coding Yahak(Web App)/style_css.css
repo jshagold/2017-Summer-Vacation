@@ -1,0 +1,17 @@
+header {
+    border-bottom: 5px lightslategray solid;
+    padding:30px;
+}
+nav {
+    border-right: 5px lightslategray solid;
+    width:200px;
+    height:600px;
+    float:left;
+}
+article {
+    margin:10px;
+    float:left;
+}
+article h2 {
+    font-size: 50px;
+}
